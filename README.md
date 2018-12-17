@@ -167,6 +167,7 @@ Authorization: bearer <token>
 | deleted         | bool   | Признак удалённого лида                    |
 | contracted      | bool   | Признак сделки по лиду                     |
 | deleted_date    | string | Дата удаления, если лид удалён             |
+| delete_reason   | string | Причина удаления лида                      |
 | contracted_date | string | Дата сделки, если по лиду заключена сделка |
 
 ##### Статусы лида
