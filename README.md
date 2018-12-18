@@ -1,5 +1,5 @@
 # Документация Mfork
-Адрес публичного api `https://crm.mfork.ru/public_api/`
+Адрес публичного api `https://ffo24.ru/public_api/`
 
 ### Содержание
 | Путь                                                                  | Метод | Описание                    |            
