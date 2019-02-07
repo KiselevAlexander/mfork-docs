@@ -10,7 +10,7 @@
 | [Примеры обращения к API](#примеры-обращения-к-api)                   |       |                             |
 
 ## Документация API для поставщиков
-Подключившись к системе поставщики с помощью API могут создавать лидов с CRM системе, а так же отслеживать статус работы с поставщиком
+Подключившись к системе, партнёр с помощью API может создавать лидов с CRM системе, а так же отслеживать статус работы с лидом
 
 ### Авторизация
 
@@ -21,11 +21,13 @@
 
 ##### Пример запроса:
 ```curl
-GET https://crm.mfork.ru/public_api/suppliers/
+GET https://ffo24.ru/public_api/suppliers/
 Cache-Control: no-cache
 Content-Type: application/json
 Authorization: bearer <token>
 ```
+
+При успешном запросе статус ответа всегда будет 200
 
 ##### Пример отвера:
 ```curl
@@ -50,7 +52,7 @@ Connection: keep-alive
 
 ##### Пример ответа при ошибке авторизации:
 ```curl
-GET https://crm.mfork.ru/public_api/suppliers/leads/
+GET https://ffo24.ru/public_api/suppliers/leads/
 
 HTTP/1.1 401 Unauthorized
 Access-Control-Allow-Origin: *
@@ -69,7 +71,7 @@ Unauthorized
 ### Создание лида
 > Method: `POST`
 >
-> URL: `https://crm.mfork.ru/public_api/suppliers/leads/`
+> URL: `https://ffo24.ru/public_api/suppliers/leads/`
 
 ##### Параметры запроса
 | Параметр | Тип    | Описание                                                                  | Обязательный |
@@ -83,7 +85,7 @@ Unauthorized
 
 ##### Пример запроса:
 ```curl
-POST https://crm.mfork.ru/public_api/suppliers/leads/
+POST https://ffo24.ru/public_api/suppliers/leads/
 Cache-Control: no-cache
 Content-Type: application/json
 Authorization: bearer <token>
@@ -105,7 +107,7 @@ Authorization: bearer <token>
 
 ##### Пример ответа:
 ```curl
-POST https://crm.mfork.ru/public_api/suppliers/leads/
+POST https://ffo24.ru/public_api/suppliers/leads/
 
 HTTP/1.1 200 OK
 Access-Control-Allow-Origin: *
@@ -126,12 +128,12 @@ Connection: keep-alive
 ```
 
 ##### Ошибки:
-| Код      | Текст                       | Описание                               |
-| -------- | --------------------------- | -------------------------------------- |
-| 40001    | Field '<field>' not allowed | Ошибка при передаче некорректного поля |
-| 40002    | Field '<field>' is required | Ошибка остутсвия обязательного поля    |
-| 40003    | Ext ID already exists       | Лид с таким `ext_id` уже существует    |
-| 40004    | Incorrect phone number      | Некорректный номер телефона лида       |
+| HTTP статус | Код      | Текст                       | Описание                               |
+| ----------- | -------- | --------------------------- | -------------------------------------- |
+| 400         | 40001    | Field '<field>' not allowed | Ошибка при передаче некорректного поля |
+| 400         | 40002    | Field '<field>' is required | Ошибка остутсвия обязательного поля    |
+| 400         | 40003    | Ext ID already exists       | Лид с таким `ext_id` уже существует    |
+| 400         | 40004    | Incorrect phone number      | Некорректный номер телефона лида       |
 
 
 
@@ -140,7 +142,7 @@ Connection: keep-alive
 ### Получение информации о лиде
 > Method: `GET`
 >
-> URL: `https://crm.mfork.ru/public_api/suppliers/leads/<EXT_ID>/`
+> URL: `https://ffo24.ru/public_api/suppliers/leads/<EXT_ID>/`
 
 ##### Параметры запроса
 | Параметр | Тип    | Описание                                                                  | Обязательный |
@@ -149,7 +151,7 @@ Connection: keep-alive
 
 ##### Пример запроса:
 ```curl
-GET https://crm.mfork.ru/public_api/suppliers/leads/id123/
+GET https://ffo24.ru/public_api/suppliers/leads/id123/
 Cache-Control: no-cache
 Content-Type: application/json
 Authorization: bearer <token>
@@ -180,7 +182,7 @@ Authorization: bearer <token>
 
 ##### Пример ответа:
 ```curl
-GET https://crm.mfork.ru/public_api/suppliers/leads/id123/
+GET https://ffo24.ru/public_api/suppliers/leads/id123/
 
 HTTP/1.1 200 OK
 Access-Control-Allow-Origin: *
@@ -210,9 +212,9 @@ Connection: keep-alive
 ```
 
 ##### Ошибки:
-| Код      | Текст          | Описание                       |
-| -------- | -------------- | ------------------------------ |
-| 40401    | Lead not found | Лид с таким `ext_id` не найден |
+| HTTP статус | Код      | Текст          | Описание                       |
+| ----------- | -------- | -------------- | ------------------------------ |
+| 404         | 40401    | Lead not found | Лид с таким `ext_id` не найден |
 
 
 
@@ -237,7 +239,7 @@ Connection: keep-alive
     $headers[] = 'Authorization: bearer <TOKEN>';
     curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
     curl_setopt( $ch, CURLOPT_POSTFIELDS, $payload );
-    curl_setopt($ch, CURLOPT_URL, "https://crm.mfork.ru/public_api/suppliers/leads/");
+    curl_setopt($ch, CURLOPT_URL, "https://ffo24.ru/public_api/suppliers/leads/");
     curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
     $resp = curl_exec($ch);
     $resp = json_decode($resp, true);
